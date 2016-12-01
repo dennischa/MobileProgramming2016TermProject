@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Life Logger</string>
+    <string name="dailytype">일상목록</string>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="11dp"
+        android:text="현재위치사용"
+        android:id="@+id/LocationCheck"
+        android:layout_weight="0.13"
+        android:checked="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수동 위치설정"
+        android:id="@+id/LocationHandle"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/LocationCheck"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="현재시간사용"
+        android:id="@+id/TimeCheck"
+        android:layout_weight="0.10"
+        android:checked="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/LocationHandle" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날짜"
+        android:id="@+id/datebtn"
+        android:layout_weight="0.13"
+        android:layout_below="@+id/TimeCheck"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:id="@+id/completebtn"
+        android:layout_gravity="right"
+        android:layout_weight="0.13"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시간"
+        android:id="@+id/timebtn"
+        android:layout_alignTop="@+id/datebtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/alert2"
+        android:layout_alignStart="@+id/alert2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일상 종류선택"
+        android:id="@+id/dailytxt"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/dailytxt"
+        android:layout_toLeftOf="@+id/completebtn"
+        android:layout_toStartOf="@+id/completebtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내용 입력"
+        android:id="@+id/alert2"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/completebtn"
+        android:layout_toEndOf="@+id/completebtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제목 입력"
+        android:id="@+id/alert1"
+        android:layout_below="@+id/spinner"
+        android:layout_alignRight="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
