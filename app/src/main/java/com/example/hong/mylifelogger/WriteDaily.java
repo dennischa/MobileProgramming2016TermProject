@@ -163,9 +163,12 @@ public class WriteDaily extends Activity implements ListViewBtnAdapter.ListBtnCl
     public void onClickaddDaily(View v){
         Intent intent = new Intent(this, AddDaily.class);
         startActivityForResult(intent, 0);
+   }
 
-        //adapter.notifyDataSetChanged();
-        //SetList();
+    @Override
+    protected void onResume() {
+        super.onPostResume();
+        SetList();
     }
 
 

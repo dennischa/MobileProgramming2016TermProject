@@ -18,7 +18,7 @@ public class DataBaseOpen extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE t_table"
-                + "(id integer primary key autoincrement, "
+                + "(id integer primary key  autoincrement, "
                 + "date TEXT, "
                 + "time TEXT, "
                 + "address TEXT, "

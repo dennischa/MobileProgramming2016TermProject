@@ -145,25 +145,8 @@ public class AddDaily extends Activity {
                 });
 
                 alert.show();
-
-
-                /*
-                Intent intent = new Intent(AddDaily.this, Camera.class);
-                intent.putExtra("URLSTRING_KEY", url);
-                intent.putExtra("DATESTRING_KEY", dateString);
-                intent.putExtra("TIMESTRING_KEY", timeString);
-               // intent.putExtra("FILE_KEY",);
-                startActivityForResult(intent, CAMERA_PICK);
-
-                //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //startActivityForResult(intent,1);
-                */
-
             }
         });
-
-
-
 
         /*title 입력 하는 팝업창*/
         findViewById(R.id.alert1).setOnClickListener(new View.OnClickListener() {
