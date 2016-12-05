@@ -13,10 +13,11 @@ public class MyData {
     private String detail;
     private double latitude;
     private double longitude;
+    private String picturekey;
 
 
     public MyData(int i, String d, String t, String ad, double latitude, double longitude,  String ty, String ti,
-           String de){
+           String de, String pk){
         id = i;
         date = d;
         time = t;
@@ -26,6 +27,7 @@ public class MyData {
         detail = de;
         this.latitude = latitude;
         this.longitude = longitude;
+        picturekey = pk;
     }
     public String getDate() {
         return date;
@@ -49,7 +51,7 @@ public class MyData {
     public double getLongitude(){
         return longitude;
     }
-
+    public String getPicturekey(){return picturekey; }
 
     public String getPrint() {
         return "ID: "+ id+ "\n"+

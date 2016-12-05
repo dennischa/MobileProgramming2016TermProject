@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class AddDaily extends Activity {
 
 
     // 카메라 관련
-    private String url= "사진 없음";
+    private String url= "사진없음";
     private Uri mImageCaptureUri;
     private ImageView mPhotoImageView;
     private String folder = "Daily";
@@ -81,7 +82,7 @@ public class AddDaily extends Activity {
     Button titlebtn;
 
     Button camerabtn;
-    ImageView iv;
+    TextView picfileView;
 
     Intent intent;
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,8 @@ public class AddDaily extends Activity {
         detailbtn = (Button) findViewById(R.id.alert2);
         titlebtn = (Button) findViewById(R.id.alert1);
         camerabtn = (Button) findViewById(R.id.camerabtn);
+
+        picfileView = (TextView) findViewById(R.id.picfileView);
         //iv = (ImageView)findViewById(R.id.iv);
 
 
@@ -135,7 +138,7 @@ public class AddDaily extends Activity {
                         //Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
                     }
                 });
-                alert.setNegativeButton("저장", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
                     }
@@ -225,7 +228,7 @@ public class AddDaily extends Activity {
                 String msg =title+ "\n" + detail +"\n" +type+"\n"+ dateString+"\n"+timeString+"\n"+addressString+"위도: " + latitude+ "경도: "+ longitude;
                 //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 
-                insertData(dateString, timeString, addressString, latitude, longitude, type, title, detail);
+                insertData(dateString, timeString, addressString, latitude, longitude, type, title, detail, url);
 
                 setResult(RESULT_OK, intent);
 
@@ -339,6 +342,7 @@ public class AddDaily extends Activity {
         //폴더명 및 파일명
         String folderPath = path + File.separator + folder;
 
+
         url = path + File.separator + folder + File.separator +  filename + ".jpg";
 
         // 저장 폴더 지정 및 폴더 생성
@@ -375,13 +379,8 @@ public class AddDaily extends Activity {
             }
             case PICK_FROM_CAMERA:
             {
-
-
+                picfileView.setText(url);
                 Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
-
-
-
-
 
             }
         }
@@ -417,7 +416,7 @@ public class AddDaily extends Activity {
 
 
     public void insertData(String date, String time,
-                           String address,  double latitude, double longitude, String type, String title, String detail) {
+                           String address,  double latitude, double longitude, String type, String title, String detail, String picturekey) {
         db.execSQL("INSERT INTO t_table "
                 + "VALUES(NULL, '" + date
                 + "', '" + time
@@ -427,6 +426,7 @@ public class AddDaily extends Activity {
                 + "', '" + type
                 + "', '" + title
                 + "', '" + detail
+                + "', '" + picturekey
                 + "');");
     }
 

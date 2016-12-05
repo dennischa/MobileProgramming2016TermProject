@@ -26,7 +26,8 @@ public class DataBaseOpen extends SQLiteOpenHelper {
                 + "longitude REAL, "
                 + "type TEXT, "
                 + "title TEXT, "
-                + "detail TEXT);");
+                + "detail TEXT, "
+                + "picturekey TEXT);");
     }
 
     @Override

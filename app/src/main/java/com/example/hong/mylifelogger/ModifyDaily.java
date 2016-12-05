@@ -46,6 +46,7 @@ public class ModifyDaily extends Activity{
     int sMonth= 0, sDay = 0, sHour= 0,sMinute= 0;
     private String dateString, timeString;
     private String type, title, detail;
+    private String picturekey;
 
     private MyLocation location; // 위치사용
     Spinner dailytype;      // 일상 스피너
@@ -75,6 +76,7 @@ public class ModifyDaily extends Activity{
         type = intent.getStringExtra("TYPE_KEY");
         title = intent.getStringExtra("TITLE_KEY");
         detail = intent.getStringExtra("DETAIL_KEY");
+        picturekey = intent.getStringExtra("PICTURE_KEY");
 
 
 
@@ -305,6 +307,7 @@ public class ModifyDaily extends Activity{
                 + "', '" + type
                 + "', '" + title
                 + "', '" + detail
+                + "', '" + picturekey
                 + "');");
     }
     public void modifyData(int id, String date, String time,
@@ -317,7 +320,8 @@ public class ModifyDaily extends Activity{
                         "longitude = '"+ longitude+"', "+
                         "type = '"+ type+"', "+
                         "title = '"+ title+"', "+
-                        "detail = '"+ detail+
+                        "detail = '"+ detail+"', "+
+                        "picturekey = '"+ picturekey+
                         "' WHERE id = '"+ id + "' ;"
         );
     }

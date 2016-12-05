@@ -3,6 +3,7 @@ package com.example.hong.mylifelogger;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -78,6 +80,7 @@ public class ListViewBtnAdapter extends ArrayAdapter implements View.OnClickList
                 intent.putExtra("TYPE_KEY", data.getType());
                 intent.putExtra("TITLE_KEY", data.getTitle());
                 intent.putExtra("DETAIL_KEY", data.getDetail());
+                intent.putExtra("PICTURE_KEY", data.getPicturekey());
                 parent.getContext().startActivity(intent);
 
 
@@ -88,6 +91,19 @@ public class ListViewBtnAdapter extends ArrayAdapter implements View.OnClickList
         Button picturebtn = (Button) convertView.findViewById(R.id.picturebtn);
         picturebtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+
+                // 저장된 이미지 갤러리에서 불러오기
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                File file = new File("/storage/emulated/0/"+data.getPicturekey());
+                Uri uri = Uri.fromFile(file);
+
+                intent.setDataAndType(Uri.parse("file://"+file.getAbsolutePath()), "image/*");
+                getContext().startActivity(intent);
+
+               // getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(file)));
+               // data.getPicturekey();
 
               //  textTextView.setText(Integer.toString(pos + 1) + "번 아이템 선택.");
             }

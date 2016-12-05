@@ -22,6 +22,8 @@ public class WriteDaily extends Activity implements ListViewBtnAdapter.ListBtnCl
     static SQLiteDatabase db;
     ArrayList<MyData> items = new ArrayList<MyData>();
 
+    String picturekey = "";
+
     ListView listView;
     ListViewBtnAdapter adapter;
 
@@ -37,10 +39,8 @@ public class WriteDaily extends Activity implements ListViewBtnAdapter.ListBtnCl
         dataBaseOpen = new DataBaseOpen(this);
         db = dataBaseOpen.getWritableDatabase();
 
-
         // DB읽어오기
         readTable();
-
 
         //리스트뷰 생성
         adapter = new ListViewBtnAdapter(this, R.layout.listview_btn_item, items,  this);
@@ -141,9 +141,9 @@ public class WriteDaily extends Activity implements ListViewBtnAdapter.ListBtnCl
             String type = results.getString(6);
             String title = results.getString(7);
             String detail = results.getString(8);
+            String picturekey = results.getString(9);
 
-
-            items.add(new MyData(id, date, time, address, latitude, longitude,  type, title, detail));
+            items.add(new MyData(id, date, time, address, latitude, longitude,  type, title, detail, picturekey));
             results.moveToNext();
         }
         results.close();
