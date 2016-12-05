@@ -44,9 +44,8 @@ public class AddDaily extends Activity {
     private static final int PICK_FROM_CAMERA =2;
     private static final int CROP_FROM_CAMERA = 3;
 
-    // 카메라 관련
-    private Uri mImageCaptureUri;
-    private ImageView mPhotoImageView;
+
+
 
     static DataBaseOpen dataBaseOpen;
     static SQLiteDatabase db;
@@ -60,6 +59,15 @@ public class AddDaily extends Activity {
     int sMonth= 0, sDay = 0, sHour= 0,sMinute= 0;
     private String dateString, timeString;
     private String type, title, detail;
+
+
+    // 카메라 관련
+    private String url= "사진 없음";
+    private Uri mImageCaptureUri;
+    private ImageView mPhotoImageView;
+    private String folder = "Daily";
+    private String filename;
+
 
     private MyLocation location; // 위치사용
     Spinner dailytype;      // 일상 스피너
@@ -110,13 +118,35 @@ public class AddDaily extends Activity {
 
         intent = getIntent();
 
+
         // 카메라창
         findViewById(R.id.camerabtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stu
 
+                AlertDialog.Builder alert = new AlertDialog.Builder(AddDaily.this).setTitle("사진 찍기");
+
+                alert.setMessage(url);
+
+                alert.setPositiveButton("사진촬영", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        doTakePhotoAction();
+                        //Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.setNegativeButton("저장", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alert.show();
+
+
+                /*
                 Intent intent = new Intent(AddDaily.this, Camera.class);
+                intent.putExtra("URLSTRING_KEY", url);
                 intent.putExtra("DATESTRING_KEY", dateString);
                 intent.putExtra("TIMESTRING_KEY", timeString);
                // intent.putExtra("FILE_KEY",);
@@ -124,7 +154,7 @@ public class AddDaily extends Activity {
 
                 //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //startActivityForResult(intent,1);
-
+                */
 
             }
         });
@@ -298,12 +328,30 @@ public class AddDaily extends Activity {
 
     private void doTakePhotoAction()
     {
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        // 임시로 사용할 파일의 경로를 생성
-        String url = "tmp_" + dateString+" "+ timeString + ".jpg";
+
+        //저장할 파일 설정
+        //외부 저장소 경로
+        filename = title+"_"+dateString;
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        //폴더명 및 파일명
+        String folderPath = path + File.separator + folder;
+
+        url = path + File.separator + folder + File.separator +  filename + ".jpg";
+
+        // 저장 폴더 지정 및 폴더 생성
+        File fileFolderPath = new File(folderPath);
+        //fileFolderPath.mkdir();
+
+
         mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
+
+
+        // 임시로 사용할 파일의 경로를 생성
+        //url = "tmp_" + dateString+" "+ timeString + ".jpg";
+        //mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
 
         intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
         // 특정기기에서 사진을 저장못하는 문제가 있어 다음을 주석처리 합니다.
@@ -325,8 +373,14 @@ public class AddDaily extends Activity {
                 latitude = data.getDoubleExtra("LATITUDE_KEY",0.00);
                 longitude = data.getDoubleExtra("LONGITUDE_KEY",0.00);
             }
-            case CAMERA_PICK:
+            case PICK_FROM_CAMERA:
             {
+
+
+                Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
+
+
+
 
 
             }
